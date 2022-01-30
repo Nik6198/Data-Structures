@@ -1,0 +1,67 @@
+int main(){
+    int n;
+    int k,i,h=0;//h is result
+    cin >> n >> k;
+    vector<int> x(n);
+    for(int x_i = 0;x_i < n;x_i++)
+    { 
+        cin >> x[x_i];
+    }
+    for(int i=0;i<n-1;i++)
+     {
+       for(int j=0;(j<n-1-i);j++)
+       {
+         if(x[j]>x[j+1])
+         {
+           int temp;
+           temp=x[j];
+           x[j]=x[j+1];
+           x[j+1]=temp;  
+         }
+       }
+     }
+    
+     for(i=0;i<n;i++)   
+     {   //cout<<i;
+        if ((x[i+1]-x[i])>k)
+        {
+            h++;
+        }
+        else
+        {   int j;
+            for(j=1; ;j++)
+            {
+                if(((x[i+j]-x[i])>k) || ((i+j)>n-1))
+                   {
+                       break;
+                   }
+               
+            }
+                   i+=j-1;       
+            //cout<<i<<endl;
+           for (j=1; ;j++)
+           {
+               if(((x[i+j]-x[i])>k) || ((i+j)>n-1))
+                   {
+                       break;
+                   }
+           }
+                   i+=j-1;              
+          //cout<<i<<"\t";
+          
+         h++;
+         
+     }
+         if(i==n)
+         {
+             h++;
+         }
+
+    
+    
+    }
+             
+    cout<<h;
+    return 0;
+}
+
